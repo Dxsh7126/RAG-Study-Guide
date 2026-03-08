@@ -94,3 +94,4 @@ if all_docs:
     print(f"Ingestion Complete! Uploaded {len(all_docs)} chunks.")
 else:
     print("FAILED: No text was found to upload! Check your folder.")
+
