@@ -10,7 +10,7 @@ Built with **Python**, **ChromaDB**, and **Llama 3.1**, this system solves the s
 ## ✨ Key Architectural Features
 
 * 🧠 **Advanced Query Reformulation:** Utilizes a two-step LLM pipeline. Before searching the database, an NLP router translates vague user pronouns (e.g., *"expand on it"*) into highly specific, standalone search queries based on chat history.
-* 🗂️ **Automated Ingestion & Metadata Filtering:** The `ingest.py` pipeline automatically scans nested directory structures (`./notes/COURSE_CODE/`). It chunks PDFs and PPTXs and tags them with course-specific metadata, creating an isolated semantic firewall between subjects.
+* 🗂️ **Automated Ingestion & Metadata Filtering:** The `ingest.py` pipeline automatically scans nested directory structures. It chunks PDFs and PPTXs and tags them with course-specific metadata, creating an isolated semantic firewall between subjects.
 * 🔎 **Explainable Source Citations:** Solves the LLM "black box" problem by mapping the generated answers back to the exact source file and page/slide number.
 * 💾 **Persistent State Management:** Features a modern, dark-mode Vanilla JavaScript frontend that utilizes browser `localStorage` to ensure chat history and conversational context survive page refreshes.
 * 🛡️ **Anti-Hallucination Prompting:** The AI persona is hardcoded with strict grounding rules, forcing it to reject queries that fall outside the retrieved semantic context.
