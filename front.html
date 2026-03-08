@@ -1,16 +1,30 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
     <head>
-        <title>RAG system</title>
+        <meta charset="UTF-8">
+        <title>RAG Study System</title>
+        <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+        <link rel="stylesheet" href="style.css">
     </head>
     <body>
+        <div class="app-wrapper">
+            <div class="chat-container" id="chatContainer">
+                <div class="message ai-message">
+                    Hello! I am your AI Tutor. Select a course below and ask me anything!
+                </div>
+            </div>
 
-        <input type="text" id="userQuestion" placeholder="Enter query...">
-        <button id="submitBtn">Ask</button>
-        <div id="responseArea">
-            Answer will appear here...
+            <div class="input-container">
+                <select id="courseSelect">
+                    <option value="OS2202">Operating Systems</option>
+                    <option value="SEPM2220">Software Engineering</option>
+                </select>
+                <input type="text" id="userQuestion" placeholder="Ask about deadlocks, memory, etc...">
+                <button id="submitBtn">Send</button>
+                <button id="clearBtn" style="background-color: #dc3545;">Clear</button>
+            </div>
         </div>
-        <script src="app.js">
-        </script>
+
+        <script src="app.js"></script>
     </body>
 </html>
