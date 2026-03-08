@@ -13,8 +13,8 @@ def process_pdf(file_path, course_code, filename):
     ids = []
     
 
-    reader=PdfReader(file_path)
-    for i,page in enumerate(reader.pages):
+    doc=PdfReader(file_path)
+    for i,page in enumerate(doc.pages):
         text=page.extract_text()
 
         if text!="":
@@ -32,17 +32,17 @@ def process_pptx(file_path, course_code, filename):
     
     prs = Presentation(file_path)
     
-    # 1. Loop through the slides
+    # Loop through the slides
     for i, slide in enumerate(prs.slides):
         slide_text = []
         
-        # 2. Loop through every object (shape) on the slide
+        # Loop through every object (shape) on the slide
         for shape in slide.shapes:
-            # 3. Check if the object actually has text inside it
+            # Check if the object actually has text inside it
             if hasattr(shape, "text"):
                 slide_text.append(shape.text)
         
-        # 4. Mash all the text boxes together into one giant string for the slide
+        # Mash all the text boxes together into one giant string for the slide
         text = " ".join(slide_text)
 
         if text!="":
@@ -58,22 +58,35 @@ COURSE_CODE = "OS2202"
 
 all_docs, all_metadatas, all_ids = [], [], []
 
-for filename in os.listdir(NOTES_FOLDER):
-    file_path = os.path.join(NOTES_FOLDER,filename)
-    print(f"I see a file: {filename}")
+for course_folder in os.listdir(NOTES_FOLDER):
+    course_path = os.path.join(NOTES_FOLDER,course_folder)
 
-    if filename.endswith(".pdf"):
-        print(f"📄 Extracting PDF: {filename}")
-        docs, metas, doc_ids = process_pdf(file_path,COURSE_CODE,filename)
-        all_docs.extend(docs)
-        all_metadatas.extend(metas)
-        all_ids.extend(doc_ids)
-    
-    elif filename.endswith(".pptx"):
-        docs,metas,doc_ids = process_pptx(file_path,COURSE_CODE,filename)
-        all_docs.extend(docs)
-        all_metadatas.extend(metas)
-        all_ids.extend(doc_ids)
+    if not os.path.isdir(course_path):
+        continue
+
+    COURSE_CODE = course_folder
+    print(f"\n Scanning course folder: {COURSE_CODE}")
+
+    for filename in os.listdir(course_path):
+        if filename.startswith("~$"):
+            continue
+        file_path = os.path.join(course_path,filename)
+        print(f"I see a file: {filename}")
+
+        if filename.endswith(".pdf"):
+            print(f"Extracting PDF: {filename}")
+            docs, metas, doc_ids = process_pdf(file_path,COURSE_CODE,filename)
+            all_docs.extend(docs)
+            all_metadatas.extend(metas)
+            all_ids.extend(doc_ids)
+        
+        elif filename.endswith(".pptx"):
+            docs,metas,doc_ids = process_pptx(file_path,COURSE_CODE,filename)
+            all_docs.extend(docs)
+            all_metadatas.extend(metas)
+            all_ids.extend(doc_ids)
+        
+        
         
 # Finally, upload to ChromaDB
 if all_docs:
