@@ -22,6 +22,6 @@ Built with **Python**, **ChromaDB**, and **Llama 3.1**, this system solves the s
 * **Data Processing:** `pypdf`, `python-pptx`
 * **Frontend:** HTML5, CSS Flexbox, Vanilla JavaScript, Marked.js (Markdown parsing)
 
-##NOTE: Current version doesn't work with .pptx exported to .pdf
+## NOTE: Current version doesn't work with .pptx exported to .pdf
 
 ---
