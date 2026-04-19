@@ -208,7 +208,6 @@ __marimo__/
 
 # ChromaDB
 RAG/
-RAG/chroma.sqlite3
 
 # Notes
 notes/  
