@@ -13,7 +13,7 @@ CORS(app)
 
 # Connect to ChromaDB
 client = chromadb.PersistentClient('./RAG')
-collection = client.get_collection('college_notes')
+collection = client.get_or_create_collection('college_notes')
 
 # Initialize Groq Client
 groq_client = Groq(api_key=groq_api_key,timeout=httpx.Timeout(60.0, read=60.0, connect=60.0))
