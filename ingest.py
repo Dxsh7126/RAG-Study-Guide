@@ -58,6 +58,10 @@ COURSE_CODE = "OS2202"
 
 all_docs, all_metadatas, all_ids = [], [], []
 
+if not os.path.exists(NOTES_FOLDER):
+    os.makedirs(NOTES_FOLDER)
+    print(f"Created '{NOTES_FOLDER}' directory. Please place your course folders inside it.")
+
 for course_folder in os.listdir(NOTES_FOLDER):
     course_path = os.path.join(NOTES_FOLDER,course_folder)
 
