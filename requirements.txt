@@ -1,0 +1,8 @@
+chromadb
+pypdf
+python-pptx
+flask
+flask-cors
+groq
+python-dotenv
+httpx
